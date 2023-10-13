@@ -263,43 +263,20 @@ def getScoredMonth(
     }
 
 # Update the function signature to accept a list of inputs
-def getMeanScore(scoreInputs: List[ScoreInput]) -> float:
+def getMeanScore(scoreInputs: List[ScoreInput]) -> tuple[float, List[float]]:
     total_scores = []
+    individual_scores = []
     
     # Iterate through the list of inputs
     for scoreInput in scoreInputs:
-        total_scores.append(getScore(scoreInput)['overallScore'])
+        result = getScore(scoreInput)
+        if "error" in result:
+            print(f"Error in input data: {scoreInput['error']}")
+        else:
+            individual_scores.append(result["overallScore"])
+        total_scores.append(result)
     
     # Calculate the mean score
-    mean_score = sum(total_scores) / len(scoreInputs)
+    mean_score = sum(individual_scores) / len(scoreInputs)
     
-    return mean_score
-
-# Define a list of ScoreInput objects
-input1: ScoreInput = {
-    "paymentStartDate": "2023-01-01T00:00:00Z",
-    "paymentEndDate": "2023-12-31T00:00:00Z",
-    "expectedPaymentDay": 5,
-    "expectedPaymentAmount": 1000,
-    "payments": [
-        {"date": "2023-01-05T12:00:00Z", "amount": 1000},
-        {"date": "2023-02-05T11:30:00Z", "amount": 1000},
-    ],
-    "reference": "Your Reference Here",
-    "scoreBeforeStartDate": False,
-}
-
-input2: ScoreInput = {
-    "paymentStartDate": "2023-01-01T00:00:00Z",
-    "paymentEndDate": "2023-12-31T00:00:00Z",
-    "expectedPaymentDay": 5,
-    "expectedPaymentAmount": 5000,
-    "payments": [
-        {"date": "2023-01-05T12:00:00Z", "amount": 5000},
-        {"date": "2023-02-05T11:30:00Z", "amount": 5000},
-    ],
-    "reference": "Your Reference Here",
-    "scoreBeforeStartDate": True,
-}
-result = getMeanScore([input1, input2])  # Pass a list of inputs
-print("Mean Score:", result)
+    return mean_score, total_scores
