@@ -1,4 +1,4 @@
-from score import ScoreInput
+from repayment_score.score import ScoreInput
 
 # Define a list of ScoreInput objects
 input1: ScoreInput = {
@@ -11,7 +11,7 @@ input1: ScoreInput = {
         {"date": "2023-02-05T11:30:00Z", "amount": 1000},
     ],
     "reference": "Your Reference Here",
-    "scoreBeforeStartDate": False,
+    "scoreBeforeStartDate": True,
 }
 
 input2: ScoreInput = {
@@ -20,7 +20,7 @@ input2: ScoreInput = {
     "expectedPaymentDay": 3,
     "expectedPaymentAmount": 5000,
     "payments": [
-        {"date": "2023-01-05T12:00:00Z", "amount": 5000},
+        {"date": "2023-01-05T12:00:00Z", "amount": 10000},
         {"date": "2023-05-05T11:30:00Z", "amount": 5000},
     ],
     "reference": "Your Reference Here",

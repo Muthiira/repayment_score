@@ -5,8 +5,8 @@ import os
 import pytz
 
 
-from score_types import PaymentStatus, Score, ScoreError, ScoreInput, ScoredMonth
-from constants import (
+from repayment_score.score_types import PaymentStatus, Score, ScoreError, ScoreInput, ScoredMonth
+from repayment_score.constants import (
     PREVIOUS_PAYMENTS_BONUS_MULTIPLIER,
     SCORE_MULTIPLIER,
     TIME_BONUS_AFTER_DUE_DATE_MULTIPLIER,

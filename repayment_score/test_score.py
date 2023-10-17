@@ -1,5 +1,5 @@
-from score import getMeanScore
-from score_inputs import score_inputs
+from repayment_score.score import getMeanScore
+from repayment_score.score_inputs import score_inputs
 
 mean_score, individual_results = getMeanScore(score_inputs)
 
